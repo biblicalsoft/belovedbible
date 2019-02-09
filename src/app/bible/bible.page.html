@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Библия</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p>{{fontSize}}</p>
+  <ion-grid>
+    <ion-row>
+      <!-- BOOK -->
+      <ion-col>
+        <ion-item>
+          <ion-label>Книга</ion-label>
+
+          <ion-select [(ngModel)]="selectedBookNumber" [selectedText]="selectedBook.title" placeholder="Избери книга"
+            (ionChange)="selectBook(selectedBookNumber)">
+            <ion-select-option *ngFor="let bookMeta of booksMeta" [value]="bookMeta.number">
+              {{bookMeta.title}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <!-- CHAPTER -->
+      <ion-col>
+        <ion-item>
+          <ion-label>Глава</ion-label>
+
+          <ion-select [(ngModel)]="selectedChapterNumber" [selectedText]="selectedChapter.number"
+            placeholder="Избери книга" (ionChange)="selectChapter(selectedBookNumber, selectedChapterNumber)">
+            <ion-select-option *ngFor="let chapter of selectedBook.chapters" [value]="chapter.number">
+              {{chapter.number}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- CONTENT -->
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let verse of selectedChapter.verses">
+            <p slot="start">
+              {{selectedChapterNumber | leadingZeroFormat}}:{{verse.number | leadingZeroFormat}}
+            </p>
+
+            <p>{{verse.text}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

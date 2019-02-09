@@ -1,0 +1,7 @@
+{
+  "name": "bible-covenants",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Настройки</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- FONT MAGNIFIER -->
+  <ion-row>
+    <ion-col>
+      <ion-label>
+        Големина на шрифта
+      </ion-label>
+
+      <ion-range [(ngModel)]="fontSize" (ionChange)="changeFontSize(fontSize)" min="16" max="24" step="1" snaps="true" pin="true">
+        <ion-label slot="start">16px</ion-label>
+        <ion-label slot="end">24px</ion-label>
+      </ion-range>
+    </ion-col>
+  </ion-row>
+</ion-content>
