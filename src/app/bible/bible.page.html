@@ -2,42 +2,45 @@
   <ion-toolbar>
     <ion-title>Библия</ion-title>
   </ion-toolbar>
+  
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <!-- BOOK -->
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label>Книга</ion-label>
+
+            <ion-select [(ngModel)]="selectedBookNumber" [selectedText]="selectedBook.title" placeholder="Избери книга"
+              (ionChange)="selectBook(selectedBookNumber)">
+              <ion-select-option *ngFor="let bookMeta of booksMeta" [value]="bookMeta.number">
+                {{bookMeta.title}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <!-- CHAPTER -->
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label>Глава</ion-label>
+
+            <ion-select [(ngModel)]="selectedChapterNumber" [selectedText]="selectedChapter.number"
+              placeholder="Избери книга" (ionChange)="selectChapter(selectedBookNumber, selectedChapterNumber)">
+              <ion-select-option *ngFor="let chapter of selectedBook.chapters" [value]="chapter.number">
+                {{chapter.number}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <p>{{fontSize}}</p>
+  <!-- CONTENT -->
   <ion-grid>
-    <ion-row>
-      <!-- BOOK -->
-      <ion-col>
-        <ion-item>
-          <ion-label>Книга</ion-label>
-
-          <ion-select [(ngModel)]="selectedBookNumber" [selectedText]="selectedBook.title" placeholder="Избери книга"
-            (ionChange)="selectBook(selectedBookNumber)">
-            <ion-select-option *ngFor="let bookMeta of booksMeta" [value]="bookMeta.number">
-              {{bookMeta.title}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-
-      <!-- CHAPTER -->
-      <ion-col>
-        <ion-item>
-          <ion-label>Глава</ion-label>
-
-          <ion-select [(ngModel)]="selectedChapterNumber" [selectedText]="selectedChapter.number"
-            placeholder="Избери книга" (ionChange)="selectChapter(selectedBookNumber, selectedChapterNumber)">
-            <ion-select-option *ngFor="let chapter of selectedBook.chapters" [value]="chapter.number">
-              {{chapter.number}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <!-- CONTENT -->
     <ion-row>
       <ion-col>
         <ion-list>
