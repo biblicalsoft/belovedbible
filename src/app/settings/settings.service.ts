@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ISettings } from './settings.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  fontSize: number = 16;
+  readonly defaults: ISettings = {
+    fontSize: 16
+  }
 
   constructor(private storage: Storage) { }
 
@@ -18,6 +21,6 @@ export class SettingsService {
   }
 
   setFontSize(fontSizeValue) {
-    document.documentElement.style.setProperty('--bible-paragraph-font-size', `${fontSizeValue / 10}rem`);
+    document.documentElement.style.setProperty('--bible-paragraph-font-size', `${(fontSizeValue || this.defaults.fontSize) / 10}rem`);
   }
 }

@@ -32,7 +32,7 @@ export class AppComponent {
         }
 
         this.settingsService.get('fontSize')
-          .then((fontSizeValue) => {
+          .then((fontSizeValue: number) => {
             this.settingsService.setFontSize(fontSizeValue);
           });
       });
