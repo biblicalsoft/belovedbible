@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Библия</ion-title>
   </ion-toolbar>
-  
+
   <ion-toolbar>
     <ion-grid>
       <ion-row>
@@ -40,19 +40,21 @@
 
 <ion-content padding>
   <!-- CONTENT -->
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-item *ngFor="let verse of selectedChapter.verses">
-            <p slot="start">
-              {{selectedChapterNumber | leadingZeroFormat}}:{{verse.number | leadingZeroFormat}}
-            </p>
+  <div class="bible-control bible-control-left">
+    <ion-icon name="arrow-dropleft-circle" (click)="selectPrevChapter()"></ion-icon>
+  </div>
 
-            <p>{{verse.text}}</p>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let verse of selectedChapter.verses">
+      <p slot="start">
+        {{selectedChapterNumber | leadingZeroFormat}}:{{verse.number | leadingZeroFormat}}
+      </p>
+
+      <p>{{verse.text}}</p>
+    </ion-item>
+  </ion-list>
+
+  <div class="bible-control bible-control-right">
+    <ion-icon name="arrow-dropright-circle" (click)="selectNextChapter()"></ion-icon>
+  </div>
 </ion-content>

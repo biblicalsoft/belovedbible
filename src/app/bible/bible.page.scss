@@ -6,3 +6,27 @@ ion-item {
     --padding-start: 0;
     font-size: var(--bible-paragraph-font-size);
 }
+
+ion-content {
+    --padding-start: 40px;
+    --padding-end: 40px;
+}
+
+.bible-control {
+    position: fixed;
+    top: calc(50% + 44px);
+    z-index: 9999;
+
+    &.bible-control-left {
+        left: 5px;
+    }
+
+    &.bible-control-right {
+        right: 5px;
+    }
+
+    ion-icon {
+        cursor: pointer;
+        font-size: 30px;
+    }
+}

@@ -36,4 +36,18 @@ export class BiblePage {
     this.bibleService.getChapter(bookNumber, chapterNumber)
       .then((chapter: IBibleChapter) => this.selectedChapter = chapter);
   }
+
+  selectNextChapter() {
+    if (this.selectedChapterNumber < this.selectedBook.chapters.length) {
+      this.selectedChapterNumber += 1;
+      this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
+    }
+  }
+
+  selectPrevChapter() {
+    if (this.selectedChapterNumber > 1) {
+      this.selectedChapterNumber -= 1;
+      this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
+    }
+  }
 }
