@@ -1,2 +1,2 @@
-# bible-covenants
+# thebookoflive
 Bible

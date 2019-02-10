@@ -1,5 +1,5 @@
 {
-  "name": "bible-covenants",
+  "name": "thebookoflive",
   "baseref": "master",
   "tarignore": [
     "node_modules",
