@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IBibleBook, IBibleChapter } from './bible.interface';
+import { IBibleBook, IBibleChapter, IBibleVerse } from './bible.interface';
 import { BibleService } from './bible.service';
 
 @Component({
@@ -51,10 +51,14 @@ export class BiblePage {
     }
   }
 
-  markVerse(verse) {
+  markVerse(verseToToggle: IBibleVerse) {
     // TODO: Move the logic to bibleService and Save mark into the storage
     // this.bibleService.mark(this.selectedBook, this.selectedChapter, verse.number);
-    this.selectedChapter.verses.forEach((chapter) => chapter.marked = false);
-    verse.marked = !verse.marked
+    this.selectedChapter.verses.forEach((verse) => {
+      if (verse.number != verseToToggle.number) {
+        verse.marked = false
+      }
+    });
+    verseToToggle.marked = !verseToToggle.marked
   }
 }
