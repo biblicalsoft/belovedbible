@@ -50,4 +50,11 @@ export class BiblePage {
       this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
     }
   }
+
+  markVerse(verse) {
+    // TODO: Move the logic to bibleService and Save mark into the storage
+    // this.bibleService.mark(this.selectedBook, this.selectedChapter, verse.number);
+    this.selectedChapter.verses.forEach((chapter) => chapter.marked = false);
+    verse.marked = !verse.marked
+  }
 }

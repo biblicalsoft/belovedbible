@@ -49,6 +49,10 @@ export class BibleService {
         console.log(err);
       });
   }
+  
+  mark(bookNumber: number, chapterNumber: number, verseNumber: number) {
+    // TODO: Save mark into the storage
+  }
 
   /**
    * Returns available books meta info, like title, number etc.

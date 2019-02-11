@@ -1,6 +1,7 @@
 export interface IBibleVerse {
     number: number,
-    text: string
+    text: string,
+    marked: boolean
 }
 
 export interface IBibleChapter {
