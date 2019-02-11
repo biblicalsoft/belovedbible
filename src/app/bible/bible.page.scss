@@ -12,6 +12,16 @@ ion-content {
     --padding-end: 40px;
 }
 
+ion-list {
+    ion-item {
+        span {
+            display: flex;
+            align-items: center;
+            margin-right: 2px;
+        }
+    }
+}
+
 .bible-control {
     position: fixed;
     top: calc(50% + 56px);

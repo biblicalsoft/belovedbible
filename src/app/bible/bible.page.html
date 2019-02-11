@@ -46,10 +46,13 @@
 
   <ion-list>
     <ion-item *ngFor="let verse of selectedChapter.verses">
-      <p slot="start" (click)="markVerse(verse)">
-        {{selectedChapterNumber | leadingZeroFormat}}:{{verse.number | leadingZeroFormat}}
-        <ion-icon *ngIf="verse.marked" name="bookmark"></ion-icon>
-      </p>
+      <span slot="start" (click)="markVerse(verse)">
+        <ion-text>
+          {{selectedChapterNumber | leadingZeroFormat}}:{{verse.number | leadingZeroFormat}}
+        </ion-text>
+        
+        <ion-icon [style.visibility]="verse.marked ? 'visible' : 'hidden'" name="bookmark"></ion-icon>
+      </span>
 
       <p>
         {{verse.text}}
