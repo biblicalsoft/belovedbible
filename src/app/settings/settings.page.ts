@@ -8,7 +8,7 @@ import { SettingsService } from './settings.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage {
-  private fontSize = 16;
+  fontSize = 16;
 
   constructor(private settingsService: SettingsService) {
     this.settingsService.get('fontSize')

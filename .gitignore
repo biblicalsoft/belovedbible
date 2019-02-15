@@ -63,3 +63,5 @@ typings/
 # Ignore app data
 src/assets/data/
 www
+platforms
+plugins

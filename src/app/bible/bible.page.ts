@@ -8,13 +8,13 @@ import { BibleService } from './bible.service';
   styleUrls: ['./bible.page.scss'],
 })
 export class BiblePage {
-  private booksMeta = [];
+  booksMeta = [];
 
-  private selectedBookNumber: number = 1;
-  private selectedChapterNumber: number = 1;
+  selectedBookNumber: number = 1;
+  selectedChapterNumber: number = 1;
 
-  private selectedBook: IBibleBook = { name: null, title: null, chapters: [] };
-  private selectedChapter: IBibleChapter = { number: 1, verses: [] };
+  selectedBook: IBibleBook = { name: null, title: null, chapters: [] };
+  selectedChapter: IBibleChapter = { number: 1, verses: [] };
 
   constructor(private bibleService: BibleService) {
     this.booksMeta = bibleService.getBooksMeta();
