@@ -22,13 +22,13 @@ export class BiblePage {
     this.selectBook(this.selectedBookNumber);
   }
 
-  selectBook(bookNumber: number) {
+  selectBook(bookNumber: number, chapterNumber: number = 1) {
     this.bibleService.getBook(bookNumber)
       .then((book: IBibleBook) => {
         this.selectedBook = book;
-        this.selectedChapterNumber = 1;
+        this.selectedChapterNumber = chapterNumber;
         
-        this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
+        this.selectChapter(bookNumber, chapterNumber);
       });
   }
 
@@ -40,11 +40,9 @@ export class BiblePage {
   selectNextChapter() {
     if (this.selectedChapterNumber < this.selectedBook.chapters.length) {
       this.selectedChapterNumber += 1;
-      this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
     } else {
       if (this.selectedBookNumber < this.booksMeta.length) {
         this.selectedBookNumber += 1;
-        this.selectBook(this.selectedBookNumber);
       }
     }
   }
@@ -52,11 +50,9 @@ export class BiblePage {
   selectPrevChapter() {
     if (this.selectedChapterNumber > 1) {
       this.selectedChapterNumber -= 1;
-      this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
     } else {
       if (this.selectedBookNumber > 1) {
         this.selectedBookNumber -= 1;
-        this.selectBook(this.selectedBookNumber);
       }
     }
   }
