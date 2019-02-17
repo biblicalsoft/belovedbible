@@ -41,6 +41,11 @@ export class BiblePage {
     if (this.selectedChapterNumber < this.selectedBook.chapters.length) {
       this.selectedChapterNumber += 1;
       this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
+    } else {
+      if (this.selectedBookNumber < this.booksMeta.length) {
+        this.selectedBookNumber += 1;
+        this.selectBook(this.selectedBookNumber);
+      }
     }
   }
 
@@ -48,6 +53,11 @@ export class BiblePage {
     if (this.selectedChapterNumber > 1) {
       this.selectedChapterNumber -= 1;
       this.selectChapter(this.selectedBookNumber, this.selectedChapterNumber);
+    } else {
+      if (this.selectedBookNumber > 1) {
+        this.selectedBookNumber -= 1;
+        this.selectBook(this.selectedBookNumber);
+      }
     }
   }
 
@@ -59,6 +69,7 @@ export class BiblePage {
         verse.marked = false
       }
     });
+    
     verseToToggle.marked = !verseToToggle.marked
   }
 }
