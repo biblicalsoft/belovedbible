@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IBibleBook, IBibleChapter } from './bible.interface';
 
@@ -7,54 +9,45 @@ import { IBibleBook, IBibleChapter } from './bible.interface';
   providedIn: 'root'
 })
 export class BibleService {
-  private readonly booksBasePath: string = '../../assets/data/books';
+  private readonly booksBasePath: string = '../../../assets/data/books';
   private books: Array<IBibleBook> = [];
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Get a given book by provided book number
-   * @name getBook
-   * @param bookNumber The number of book to get
-   */
-  getBook(bookNumber: number) {
+  async getBook(bookNumber: number): Promise<IBibleBook> {
     if (this.books[bookNumber]) {
-      return Promise.resolve(this.books[bookNumber]);
+      return this.books[bookNumber];
     } else {
-      return this.fetchBook(bookNumber)
-        .toPromise()
-        .then((book: IBibleBook) => {
-          this.books[bookNumber] = book;
-
-          return book;
-        })
-        .catch((err) => {
-          console.log(err)
-        });
+      try {
+        const book = await lastValueFrom(this.fetchBook(bookNumber).pipe(
+          map((book: IBibleBook) => {
+            this.books[bookNumber] = book;
+            return book;
+          })
+        ));
+        return book;
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
     }
   }
 
-  /**
-   * Get book given chapter
-   * @name getChapter
-   * @param bookNumber The number of the selected book
-   * @param chapterNumber The number of the chapter to get
-   */
-  getChapter(bookNumber: number, chapterNumber: number) {
-    return this.getBook(bookNumber)
-      .then((book: IBibleBook) => {
-        return book.chapters.find((chapter: IBibleChapter) => chapter.number === chapterNumber);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async getChapter(bookNumber: number, chapterNumber: number): Promise<IBibleChapter | undefined> {
+    try {
+      const book = await this.getBook(bookNumber);
+      return book.chapters.find((chapter: IBibleChapter) => chapter.number === chapterNumber);
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
-  
+
   mark(bookNumber: number, chapterNumber: number, verseNumber: number) {
     // TODO: Save mark into the storage
   }
 
-  /**
+    /**
    * Returns available books meta info, like title, number etc.
    * @name getBooksMeta
    */
@@ -129,9 +122,9 @@ export class BibleService {
     ];
   }
 
+
   private fetchBook(bookNumber: number) {
     const bookEndpoint = `${this.booksBasePath}/${bookNumber}.json`;
-
-    return this.http.get(bookEndpoint);
+    return this.http.get<IBibleBook>(bookEndpoint);
   }
 }

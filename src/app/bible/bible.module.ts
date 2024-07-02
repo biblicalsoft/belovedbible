@@ -1,26 +1,18 @@
+import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
 import { BiblePage } from './bible.page';
-import { SharedModule } from '../shared/shared.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: BiblePage
-  }
-];
+import { BiblePageRoutingModule } from './bible-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes),
+    BiblePageRoutingModule,
     SharedModule
   ],
   declarations: [BiblePage]

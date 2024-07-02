@@ -1,21 +1,31 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Относно</ion-title>
+    <ion-title>
+      About
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <p>
-    Електронният вариант на текста на използваната библия, която в днешни дни продължава да се печата и
-    разпространява чрез съдействието на
-    <a href="//www.biblesociety.org/" title="United Bible Societies website">United Bible Societies</a>, е набиран ръчно
-    от
-    <a href="//vanyog.com/" title="Ваньо Георгиев website">Ваньо Георгиев</a>
-    и негови приятели.
-  </p>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">About</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <p>
-    При възникнали въпроси, не се колебайте да пишете на 
-    <a href="mailto:mailto.dimitrov@gmail.com">email</a>
-  </p>
+  <div>
+    <p>
+      Електронният вариант на текста на използваната библия, която в днешни дни продължава да се печата и
+      разпространява чрез съдействието на
+      <a href="//www.biblesociety.org/" title="United Bible Societies website">United Bible Societies</a>, е набиран ръчно
+      от
+      <a href="//vanyog.com/" title="Ваньо Георгиев website">Ваньо Георгиев</a>
+      и негови приятели.
+    </p>
+
+    <p>
+      При възникнали въпроси, не се колебайте да пишете на
+      <a href="mailto:mailto.dimitrov@gmail.com">email</a>
+    </p>
+  </div>
 </ion-content>

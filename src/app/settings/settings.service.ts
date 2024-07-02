@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { ISettings } from './settings.interface';
 
 @Injectable({
@@ -8,19 +8,43 @@ import { ISettings } from './settings.interface';
 export class SettingsService {
   readonly defaults: ISettings = {
     fontSize: 16
+  };
+
+  private _storage: Storage | null = null;
+
+  constructor(private storage: Storage) {
+    this.init();
   }
 
-  constructor(private storage: Storage) { }
-
-  set(key, value) {
-    return this.storage.set(key, value);
+  async init() {
+    this._storage = await this.storage.create();
   }
 
-  get(key) {
-    return this.storage.get(key);
+  private async ensureStorage() {
+    if (!this._storage) {
+      this._storage = await this.storage.create();
+    }
   }
 
-  setFontSize(fontSizeValue) {
+  async set(key: string, value: unknown) {
+    await this.ensureStorage();
+
+    if (this._storage) {
+      return await this._storage.set(key, value);
+    }
+  }
+
+  async get(key: string) {
+    await this.ensureStorage();
+
+    if (this._storage) {
+      return await this._storage.get(key);
+    }
+
+    return null;
+  }
+
+  setFontSize(fontSizeValue: number) {
     document.documentElement.style.setProperty('--bible-paragraph-font-size', `${(fontSizeValue || this.defaults.fontSize) / 10}rem`);
   }
 }
