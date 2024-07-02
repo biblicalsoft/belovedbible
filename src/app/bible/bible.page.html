@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Bible
+      Библия
     </ion-title>
   </ion-toolbar>
 
@@ -49,7 +49,7 @@
 
   <!-- CONTENT -->
   <div class="bible-control bible-control-left">
-    <ion-icon name="arrow-dropleft-circle" (click)="selectPrevChapter()"></ion-icon>
+    <ion-icon name="chevron-back-outline" (click)="selectPrevChapter()"></ion-icon>
   </div>
 
   <ion-list>
@@ -69,6 +69,6 @@
   </ion-list>
 
   <div class="bible-control bible-control-right">
-    <ion-icon name="arrow-dropright-circle" (click)="selectNextChapter()"></ion-icon>
+    <ion-icon name="chevron-forward-outline" (click)="selectNextChapter()"></ion-icon>
   </div>
 </ion-content>

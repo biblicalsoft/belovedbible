@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IBibleBook, IBibleChapter, IBibleVerse } from './bible.interface';
+
 import { BibleService } from './bible.service';
 
 @Component({

@@ -44,7 +44,13 @@ export class SettingsService {
     return null;
   }
 
-  setFontSize(fontSizeValue: number) {
-    document.documentElement.style.setProperty('--bible-paragraph-font-size', `${(fontSizeValue || this.defaults.fontSize) / 10}rem`);
+  async setFontSize(fontSizeValue?: number) {
+    const previouslyStoredValue = await this.get('fontSize');
+
+    if (!previouslyStoredValue) {
+      this.set('fontSize', fontSizeValue);
+    }
+
+    document.documentElement.style.setProperty('--bible-paragraph-font-size', `${(previouslyStoredValue ?? this.defaults.fontSize) / 10}rem`);
   }
 }
